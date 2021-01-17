@@ -11,8 +11,8 @@
 // @match          http://intel.ingress.com/
 // @grant          none
 
-// @downloadURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/portals_gallery_script.js
-// @updateURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/portals_gallery_script.js
+// @downloadURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/main/portals_gallery_script.js
+// @updateURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/main/portals_gallery_script.js
 // ==/UserScript==
 
 function wrapper(plugin_info) {
