@@ -4,7 +4,7 @@
 // @description    Creates the gallery of portals that can be used to solve the First Saturday passcode.
 // @author         Kofirs2634 aka Nerotu
 // @category       Info
-// @version        1.1
+// @version        1.0
 // @match          https://intel.ingress.com/*
 // @grant          none
 
@@ -45,7 +45,7 @@ window.plugin.portalsGallery.open = () => {
     dialog({
         html: '<div id="gallery-cnt"></div>',
         title: 'Portals Gallery',
-        width: 'auto'
+        width: '1600px'
     });
     $('#gallery-cnt')
         .append($('<div>', { class: 'controls' })
@@ -95,13 +95,13 @@ function makeTable(array) {
     if (self.sortmode == 't') array = byTitle(array)
     else if (self.sortmode == 'd') array = byDistance(array)
 
-    var rows = Math.ceil(array.length / 3);
+    var rows = Math.ceil(array.length / 6);
     if (array.length) $('.results').text(`The gallery shows ${array.length} portals`)
     else $('.results').text('There\'re no portals in the gallery')
     for (var i = 0; i < rows; i++) {
         $('#gallery').append($('<div>', { class: 'gallery-row', id: `gallery-row-${i}` }))
-        for (var j = 0; j < 3; j++) {
-            var p = array[i * 3 + j];
+        for (var j = 0; j < 6; j++) {
+            var p = array[i * 6 + j];
             if (!p) return;
             const latlng = getCoords(p);
             const renderPortalLink = document.createElement('a');
@@ -111,7 +111,7 @@ function makeTable(array) {
                 window.renderPortalDetails(guid);
             });
             $(`#gallery-row-${i}`).append($('<div>')
-                .append($('<img>', { src: p.u, width: 200, class: 'gallery-img' }))
+                .append($('<img>', { src: p.u, width: 250, class: 'gallery-img' }))
                 .append($('<span>', { class: 'gallery-coords', text: getCoords(p) }))
                 .append(renderPortalLink)
             )
