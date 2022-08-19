@@ -4,11 +4,8 @@
 // @description    Creates the gallery of portals that can be used to solve the First Saturday passcode.
 // @author         Kofirs2634 aka Nerotu
 // @category       Info
-// @version        1.0
-// @include        https://intel.ingress.com/
-// @include        http://intel.ingress.com/
-// @match          https://intel.ingress.com/
-// @match          http://intel.ingress.com/
+// @version        1.1
+// @match          https://intel.ingress.com/*
 // @grant          none
 
 // @downloadURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/main/portals_gallery_script.js
@@ -34,7 +31,7 @@ window.plugin.portalsGallery.collect = () => {
     self.storage = [];
     for (var i in window.portals) {
         var path = portals[i].options.data;
-        if (path.title && path.image) self.storage.push({ n: path.title, p: { lt: path.latE6 / 1e6, ln: path.lngE6 / 1e6 }, u: path.image })
+        if (path.title && path.image) self.storage.push({ n: path.title, p: { lt: path.latE6 / 1e6, ln: path.lngE6 / 1e6 }, u: path.image, g: portals[i].options.guid })
     }
 }
 
@@ -91,6 +88,7 @@ window.plugin.portalsGallery.doSearch = (array) => {
  * @param {object[]} array An array of rendered portals - `window.plugin.portalsGallery.storage`
  */
 function makeTable(array) {
+  
     var self = window.plugin.portalsGallery;
     $('#gallery').empty();
 
@@ -105,10 +103,17 @@ function makeTable(array) {
         for (var j = 0; j < 3; j++) {
             var p = array[i * 3 + j];
             if (!p) return;
+            const latlng = getCoords(p);
+            const renderPortalLink = document.createElement('a');
+            const guid = p.g;
+            renderPortalLink.textContent = `${p.n}`;
+            renderPortalLink.addEventListener('click', function(e) {
+                window.renderPortalDetails(guid);
+            });
             $(`#gallery-row-${i}`).append($('<div>')
                 .append($('<img>', { src: p.u, width: 200, class: 'gallery-img' }))
                 .append($('<span>', { class: 'gallery-coords', text: getCoords(p) }))
-                .append($('<a>', { class: 'gallery-link', href: `https://intel.ingress.com/intel?ll=${getCoords(p)}&z=17&pll=${getCoords(p)}`, text: p.n }))
+                .append(renderPortalLink)
             )
         }
     }
@@ -175,7 +180,7 @@ function appendStyles() {
             'align-items: baseline;' +
             'margin-bottom: 25px;' +
             '} .gallery-row > div {' +
-            'max-width: 250px;' +
+            'max-width: 500px;' +
             'display: flex;' +
             'flex-direction: column;' +
             'align-items: center;' +
