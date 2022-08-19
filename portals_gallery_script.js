@@ -178,7 +178,7 @@ function appendStyles() {
             'align-items: baseline;' +
             'margin-bottom: 25px;' +
             '} .gallery-row > div {' +
-            'max-width: 500px;' +
+            'max-width: 250px;' +
             'display: flex;' +
             'flex-direction: column;' +
             'align-items: center;' +
