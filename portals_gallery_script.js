@@ -6,6 +6,7 @@
 // @category       Info
 // @version        1.2
 // @match          https://intel.ingress.com/*
+// @match          https://intel-x.ingress.com/*
 // @grant          none
 
 // @downloadURL https://github.com/Kofirs2634/IITC-Portals-Gallery/raw/main/portals_gallery_script.js
