@@ -4,7 +4,7 @@
 // @description    Creates the gallery of portals that can be used to solve the First Saturday passcode.
 // @author         Kofirs2634 aka Nerotu
 // @category       Info
-// @version        1.2
+// @version        1.2.1
 // @match          https://intel.ingress.com/*
 // @match          https://intel-x.ingress.com/*
 // @grant          none
